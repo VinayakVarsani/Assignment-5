@@ -1,0 +1,14 @@
+<div class="container">
+<p style="color: green"><%= notice %></p>
+
+<%= render @author %>
+
+<div>
+  <%= link_to "Edit this author", edit_author_path(@author), class:"btn btn-secondary" %> 
+  <%= link_to "Back to authors", authors_path, class:"btn btn-secondary" %>
+</div>
+<br>
+<div>
+  <%= button_to "Destroy this author", @author, method: :delete ,class:"btn btn-danger"%>
+</div>
+</div>

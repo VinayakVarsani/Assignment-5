@@ -1,0 +1,89 @@
+<!--<div class="container">
+<p style="color: green"><%= notice %></p>
+
+<h1>Authors</h1>
+
+<div id="authors">
+  <% @authors.each do |author| %>
+    <%= render author %>
+    <p>
+      <%= link_to "Show this author", author %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New author", new_author_path, class: "btn btn-primary " %>
+</div> !-->
+
+
+<!--
+<p style="color: green"><%= notice %></p>
+<div class="d-flex justify-content-between align-items-center">
+  <h2>Authors</h2>
+  <%= link_to "New author", new_author_path, class: "btn btn-outline-primary mx-2" %>
+</div>
+<div id="authors">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Books</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @authors.each do |author|%>
+        <tr>
+          <td><%= author.name%></td>
+          <td><%= author.address%></td>
+          <td>
+            <% author.books.each do |book| %>
+              <%= link_to book.name, book_path(book), class: "btn btn-outline-primary"%>
+            <% end %>
+          </td>
+          <td><%= image_tag author.profile_picture, size: "100x100" %></td>
+          <td><%= link_to "Edit", edit_author_path(author), class: "btn btn-outline-warning" %></td>
+          <td><%= link_to "Delete", author_path(author), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div> !-->
+
+
+<p style="color: green"><%= notice %></p>
+<div class="d-flex justify-content-between align-items-center me-5">
+  <h2>Authors</h2>
+  <%= link_to "New author", new_author_path, class: "btn btn-outline-primary ms-5" %>
+</div>
+<hr>
+<div class="container-fluid ">
+<div class="d-flex row row-cols-1 row-cols-md-3 g-4 mx-5">
+<% @authors.each do |author|%>
+<div class="card mx-2" style="max-width: 450px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <%= image_tag author.profile_picture, size: "150x150" %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= author.name%></h5>
+        <p class="card-text"><%= author.address%></p>
+         <% author.books.each do |book| %>
+              <%= link_to book.name, book_path(book), class: "btn btn-outline-primary"%>
+          <% end %>
+          </div>
+      <div class="card-footer">
+        <%= link_to "Edit", edit_author_path(author), class: "btn btn-outline-warning" %>
+        <%= link_to "Delete", author_path(author), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger" %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<% end %>
+</div>
+</div>

@@ -1,0 +1,86 @@
+<!--<div class="container">
+<p style="color: green"><%= notice %></p>
+
+<h1>Books</h1>
+
+<div id="books">
+  <% @books.each do |book| %>
+    <%= render book %>
+    <br>
+    <p>
+      <%= link_to "Show this book", book , class:"btn btn-secondary" %> 
+    </p>
+  <% end %>
+
+</div>
+<br />
+</div> !-->
+<!--
+<p style="color: green"><%= notice %></p>
+<div class="d-flex justify-content-between align-items-center">
+  <h2>Books</h2>
+  <%= link_to "New Book", new_book_path, class: "btn btn-outline-primary mx-2" %>
+</div>
+<div id="books">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Author</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @books.each do |book|%>
+        <tr>
+          <td><%= book.name%></td>
+          <td><%= book.author.name%></td>
+       
+         <% book.cover_photos.each do |cover_photo|%>
+          <td><%= image_tag cover_photo, size: "100x100" %></td>
+          <%end%>
+          <td><%= link_to "Edit", edit_book_path(book), class: "btn btn-outline-warning" %></td>
+          <td><%= link_to "Delete", book_path(book), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div> !-->
+
+
+
+<p style="color: green"><%= notice %></p>
+<div class="d-flex justify-content-between align-items-center me-5">
+  <h2>Books</h2>
+  <%= link_to "New Book", new_book_path, class: "btn btn-outline-primary ms-5" %>
+</div>
+<hr>
+<div class="container-fluid ">
+<div class="d-flex row row-cols-1 row-cols-md-3 g-4 mx-5">
+ <% @books.each do |book|%>
+<div class="card mx-2" style="max-width: 450px;">
+  <div class="row g-0">
+    <div class="col-md-4 ">
+       <% book.cover_photos.each do |cover_photo|%>
+          <%= image_tag cover_photo, size: "150x150" %>
+          <%end%>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= book.name%></h5>
+        <p class="card-text"><strong>Author Name: </strong><%= book.author.name%></p>
+         
+          </div>
+      <div class="card-footer">
+        <%= link_to "Edit", edit_book_path(book), class: "btn btn-outline-warning" %>
+        <%= link_to "Delete", book_path(book), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger" %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<% end %>
+</div>
+</div>

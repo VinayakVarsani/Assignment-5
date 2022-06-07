@@ -1,0 +1,21 @@
+<div class="container">
+<div id="<%= dom_id author %>">
+  <p>
+    <strong>Name:</strong>
+    <%= author.name %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= author.address %>
+  </p>
+
+  <%= author.body %>
+
+  <br />
+  <% if author.profile_picture.content_type.in?(%w[image/png])%>
+    <%= link_to image_tag(author.profile_picture_as_thumbnail), author.profile_picture if author.profile_picture.attached? %>
+  <% end %>
+
+</div>
+</div>
